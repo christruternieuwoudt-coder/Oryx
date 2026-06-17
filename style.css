@@ -387,7 +387,7 @@ header {
     font-size: 0.95rem;
 }
 
-/* --- NEW COMPREHENSIVE MODAL SYSTEM --- */
+/* --- LIGHTBOX MODAL --- */
 .product-modal {
     display: none;
     position: fixed;
@@ -548,10 +548,6 @@ header {
     position: absolute;
     left: 0;
     font-weight: bold;
-}
-
-.spec-row strong {
-    color: var(--text-main);
 }
 
 .modal-closing-note {
