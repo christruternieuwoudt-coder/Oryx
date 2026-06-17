@@ -3,77 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Commission Checkout | ORYX LEATHER</title>
+    <title>Request Commission Build | ORYX LEATHER</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="checkout-body">
+<body class="checkout-page">
 
-    <div class="checkout-container">
-        <div>
-            <a href="index.html" class="header-logo">ORYX LEATHER</a>
-            <h1 class="section-title">Request Commission Build</h1>
-            <p class="section-subtitle">Please finalize your contact configuration and shipping destination below to secure your handmade build slot reservation.</p>
+    <nav>
+        <a href="index.html" class="logo">ORYX LEATHER</a>
+    </nav>
 
-            <form action="https://api.web3forms.com/submit" method="POST" id="checkoutFormMain">
-                <input type="hidden" name="access_key" value="3ea750e2-485e-4ed7-8b49-46d34f447644">
-                <input type="hidden" name="subject" value="New Oryx Leather Studio Commission Order">
-                <input type="hidden" name="from_name" value="Oryx Digital Studio Engine">
-                
-                <input type="hidden" name="ordered_item" id="hidden_ordered_item" value="">
-                <input type="hidden" name="order_total" id="hidden_order_total" value="">
+    <div class="checkout-wrapper">
+        <!-- LEFT COLUMN: FORM -->
+        <div class="checkout-main">
+            <h1 class="checkout-title">REQUEST COMMISSION BUILD</h1>
+            <p class="checkout-subtitle">Please finalize your contact configuration and shipping destination below to secure your handmade build slot reservation.</p>
 
-                <div class="form-group-title">1. Your Direct Contact</div>
-                <div class="form-row split">
-                    <div class="field-wrap">
-                        <label for="form-name">Full Name</label>
-                        <input type="text" id="form-name" name="customer_name" placeholder="John Doe" required>
+            <form id="commissionForm">
+                <!-- SECTION 1 -->
+                <div class="form-section">
+                    <h3 class="section-label">1. YOUR DIRECT CONTACT</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>FULL NAME</label>
+                            <input type="text" id="clientName" required placeholder="e.g. Chris Truter Nieuwoudt">
+                        </div>
+                        <div class="form-group">
+                            <label>EMAIL ADDRESS</label>
+                            <input type="email" id="clientEmail" required placeholder="e.g. christruter@gmail.com">
+                        </div>
                     </div>
-                    <div class="field-wrap">
-                        <label for="form-email">Email Address</label>
-                        <input type="email" id="form-email" name="customer_email" placeholder="john@example.com" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="field-wrap">
-                        <label for="form-phone">Phone Number / Line ID</label>
-                        <input type="text" id="form-phone" name="customer_phone" placeholder="0912-345-678 / line_id" required>
+                    <div class="form-group">
+                        <label>PHONE NUMBER / LINE ID</label>
+                        <input type="text" id="clientPhone" required placeholder="e.g. 0968059390">
                     </div>
                 </div>
 
-                <div class="form-group-title" style="margin-top: 2.5rem;">2. Fulfillment & Studio Delivery</div>
-                <div class="form-row">
-                    <div class="field-wrap">
-                        <label for="form-address">Full Shipping Address</label>
-                        <textarea id="form-address" name="shipping_address" rows="3" placeholder="100, Taiwan, Taipei City, Zhongzheng District..." required></textarea>
+                <!-- SECTION 2 -->
+                <div class="form-section">
+                    <h3 class="section-label">2. FULFILLMENT & STUDIO DELIVERY</h3>
+                    <div class="form-group">
+                        <label>FULL SHIPPING ADDRESS</label>
+                        <textarea id="clientAddress" required placeholder="Please enter your full delivery address..."></textarea>
+                    </div>
+                </div>
+
+                <!-- NEW SECTION 3: CUSTOM REQUIREMENTS -->
+                <div class="form-section">
+                    <h3 class="section-label">3. BESPOKE MODIFICATIONS & SPECIFIC REQUIREMENTS</h3>
+                    <div class="form-group">
+                        <label>CUSTOM NOTES (INITIALS, STITCHING COLOR, OR SPECIAL REQUESTS)</label>
+                        <textarea id="customRequirements" placeholder="Type any specific leathercraft adjustments, monogramming requests, or timing preferences here... (Optional)"></textarea>
                     </div>
                 </div>
             </form>
         </div>
 
-        <div class="summary-panel">
-            <h2 class="summary-title">Your Basket</h2>
-            <div id="dynamic-item-target"></div>
-            
-            <div class="cost-breakdown">
-                <div class="cost-line">
-                    <span>Artisanal Subtotal</span>
-                    <span id="subtotal-display">NT$ 0</span>
+        <!-- RIGHT COLUMN: BASKET SUMMARY -->
+        <div class="checkout-sidebar">
+            <div class="basket-card">
+                <h3 class="basket-title">YOUR BASKET</h3>
+                
+                <div class="basket-item">
+                    <img src="Oryx Cardholder Slim Tan 1.jpg" alt="Oryx Cardholder Slim Tan" class="basket-thumb">
+                    <div class="basket-item-details">
+                        <span class="basket-item-name">Oryx Cardholder Slim Tan</span>
+                        <span class="basket-item-qty">Qty: 1</span>
+                    </div>
+                    <span class="basket-item-price">NT$ 990</span>
                 </div>
-                <div class="cost-line">
-                    <span>Insured Studio Shipping</span>
-                    <span class="free-badge">Free</span>
+
+                <div class="price-breakdown">
+                    <div class="price-row">
+                        <span>Artisanal Subtotal</span>
+                        <span>NT$ 990</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Insured Studio Shipping</span>
+                        <span class="free-badge">FREE</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="total-line">
-                <span>Estimated Total</span>
-                <span id="total-display">NT$ 0</span>
-            </div>
+                <div class="total-row">
+                    <span>Estimated Total</span>
+                    <span>NT$ 990</span>
+                </div>
 
-            <button type="submit" form="checkoutFormMain" class="submit-btn">Submit Build Reservation</button>
+                <button type="submit" form="commissionForm" class="submit-reservation-btn">SUBMIT BUILD RESERVATION</button>
+            </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2026 ORYX LEATHER Studio. Built for the journey.</p>
+    </footer>
+
+    <script>
+        document.getElementById('commissionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('clientName').value;
+            const email = document.getElementById('clientEmail').value;
+            const phone = document.getElementById('clientPhone').value;
+            const address = document.getElementById('clientAddress').value;
+            const requirements = document.getElementById('customRequirements').value || "None provided";
+
+            // Format the message template for your notification system / email backend
+            const messageBody = `
+New Commission Reservation!
+---------------------------
+Product: Oryx Cardholder Slim Tan (NT$ 990)
+Client Name: ${name}
+Email: ${email}
+Phone/Line: ${phone}
+Address: ${address}
+Custom Requirements: ${requirements}
+            `;
+
+            alert("Thank you! Your artisanal build slot request has been sent to the studio. We will verify your requirements and contact you shortly.");
+            console.log(messageBody);
+            // Ready to link to EmailJS, Formspree, or WhatsApp api here
+        });
+    </script>
 </body>
 </html>
