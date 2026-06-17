@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oryx Leather | Commission Reservation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="padding-top: 120px;">
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">ORYX<span>LEATHER</span></a>
+            <a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left"></i> Return to Studio</a>
+        </div>
+    </header>
+
+    <section class="container" style="margin-bottom: 6rem;">
+        <div class="section-header" style="text-align: left; margin-bottom: 3rem;">
+            <span class="section-badge">Secure Studio Slot</span>
+            <h2>Request Commission</h2>
+            <p>Every piece is individually hand-shaped and saddle-stitched to your request. Please fill out your details below to lock in your build reservation.</p>
+        </div>
+
+        <div class="checkout-grid">
+            <div class="checkout-form-side">
+                <form action="https://api.web3forms.com/submit" method="POST" id="checkoutFormMain">
+                    <input type="hidden" name="access_key" value="YOUR_FREE_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="New Oryx Leather Commission Reservation Request">
+                    <input type="hidden" name="from_name" value="Oryx Digital Studio Engine">
+                    
+                    <input type="hidden" name="order_items_manifest" id="hiddenItemsManifest">
+                    <input type="hidden" name="total_amount_twd" id="hiddenTotalAmount">
+
+                    <h3 class="checkout-section-title">1. Your Direct Contact</h3>
+                    <div class="form-row-twin">
+                        <div class="form-group">
+                            <label for="custName">Full Name</label>
+                            <input type="text" name="Client Name" id="custName" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="custEmail">Email Address</label>
+                            <input type="email" name="Client Email" id="custEmail" required placeholder="john@example.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="custPhone">Phone Number / LINE ID</label>
+                        <input type="text" name="Client Phone or LINE" id="custPhone" required placeholder="0912-345-678 / line_id">
+                    </div>
+
+                    <h3 class="checkout-section-title" style="margin-top: 2.5rem;">2. Fulfillment & Studio Delivery</h3>
+                    <div class="form-group">
+                        <label for="custAddress">Full Shipping Address (Taiwan or International)</label>
+                        <textarea name="Shipping Address" id="custAddress" rows="3" required placeholder="100, Taiwan, Taipei City, Zhongzheng District..."></textarea>
+                    </div>
+
+                    <h3 class="checkout-section-title" style="margin-top: 2.5rem;">3. Special Crafting Instructions</h3>
+                    <div class="form-group">
+                        <label for="custNotes">Bespoke Requests (e.g., Thread color options, initials stamping)</label>
+                        <textarea name="Special Artisan Requests" id="custNotes" rows="3" placeholder="If you have specific layout notes or engraving requests, specify them here..."></textarea>
+                    </div>
+
+                    <div class="checkout-disclaimer-card">
+                        <h4><i class="fa-solid fa-circle-info"></i> How Payment Works</h4>
+                        <p>No immediate payment is processed right now. Once submitted, our studio craftsman reviews material allocation and emails your verified slot timing alongside native secure payment codes (Bank Transfer/LINE Pay QR).</p>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; text-align: center; margin-top: 1.5rem;">Submit Build Reservation</button>
+                </form>
+            </div>
+
+            <div class="checkout-summary-side">
+                <h3 class="checkout-section-title">Order Summary</h3>
+                <div id="checkoutItemsList" class="checkout-items-list">
+                    </div>
+                
+                <div class="summary-accounting-block">
+                    <div class="accounting-row">
+                        <span>Artisanal Subtotal</span>
+                        <span id="summarySubtotal">NT$ 0</span>
+                    </div>
+                    <div class="accounting-row">
+                        <span>Insured Studio Shipping</span>
+                        <span style="color: var(--primary);">FREE</span>
+                    </div>
+                    <div class="accounting-row total-row">
+                        <span>Estimated Total</span>
+                        <span id="summaryTotal">NT$ 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Oryx Leather. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Inline targeted execution engine for checkout state hydration
+        document.addEventListener('DOMContentLoaded', () => {
+            const basket = JSON.parse(localStorage.getItem('oryx_basket')) || [];
+            const listContainer = document.getElementById('checkoutItemsList');
+            const subtotalEl = document.getElementById('summarySubtotal');
+            const totalEl = document.getElementById('summaryTotal');
+            
+            const manifestHiddenInput = document.getElementById('hiddenItemsManifest');
+            const totalHiddenInput = document.getElementById('hiddenTotalAmount');
+
+            if(basket.length === 0) {
+                listContainer.innerHTML = `<p style="color: var(--text-muted); padding: 2rem 0;">Your studio basket is empty. <a href="index.html" style="color: var(--primary); text-decoration: underline;">Return to browse.</a></p>`;
+                return;
+            }
+
+            let computedTotal = 0;
+            let textManifestString = "";
+            listContainer.innerHTML = "";
+
+            basket.forEach(item => {
+                computedTotal += (item.price * item.quantity);
+                textManifestString += `${item.name} (Qty: ${item.quantity}) - NT$ ${item.price * item.quantity}\n`;
+
+                const row = document.createElement('div');
+                row.className = 'checkout-item-summary-card';
+                row.innerHTML = `
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <div class="summary-card-thumb"><img src="${item.img}" alt="${item.name}"></div>
+                        <div>
+                            <h4 style="font-size: 0.95rem; font-weight: 600;">${item.name}</h4>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Qty: ${item.quantity}</p>
+                        </div>
+                    </div>
+                    <div style="font-weight: 600; color: var(--primary);">NT$ ${(item.price * item.quantity).toLocaleString()}</div>
+                `;
+                listContainer.appendChild(row);
+            });
+
+            subtotalEl.textContent = `NT$ ${computedTotal.toLocaleString()}`;
+            totalEl.textContent = `NT$ ${computedTotal.toLocaleString()}`;
+            
+            // Sync values to secret secure payload submission fields
+            manifestHiddenInput.value = textManifestString;
+            totalHiddenInput.value = `NT$ ${computedTotal.toLocaleString()}`;
+
+            // Handle successful form redirection to clear cart safely
+            document.getElementById('checkoutFormMain').addEventListener('submit', () => {
+                localStorage.removeItem('oryx_basket'); // Clear cart data on submit
+            });
+        });
+    </script>
+</body>
+</html>
