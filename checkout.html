@@ -8,33 +8,28 @@
 </head>
 <body>
 
-    <!-- NAVIGATION BAR -->
     <nav>
         <a href="index.html" class="logo">ORYX LEATHER</a>
     </nav>
 
-    <!-- ORIGINAL CONTAINER STRUCTURE -->
     <div class="gallery-container">
         <div class="detail-container">
             
-            <!-- LEFT COLUMN: THE FORM -->
             <div class="details-panel">
                 <h1 class="product-title">REQUEST COMMISSION BUILD</h1>
                 <p class="description">Please finalize your contact configuration and shipping destination below to secure your handmade build slot reservation.</p>
 
-                <!-- CONNECTED FORM ROUTE VIA JAVASCRIPT -->
-                <form id="commissionForm" style="margin-top: 30px;">
+                <form action="https://api.web3forms.com/submit" method="POST" id="commissionForm" style="margin-top: 30px;">
                     
-                    <!-- Web3Forms Config Parameters -->
                     <input type="hidden" name="access_key" value="3ea750e2-485e-4ed7-8b49-46d34f447644">
                     <input type="hidden" name="subject" value="New Oryx Leather Studio Commission Order">
                     <input type="hidden" name="from_name" value="Oryx Leather Digital Shop">
                     
-                    <!-- Hardcoded Item Details sent in background -->
+                    <input type="hidden" name="redirect" value="https://christruternieuwoudt-coder.github.io/">
+                    
                     <input type="hidden" name="ordered_product" value="Oryx Cardholder Slim Tan">
                     <input type="hidden" name="total_price" value="NT$ 990">
 
-                    <!-- SECTION 1 -->
                     <div style="margin-bottom: 35px;">
                         <span class="subtitle" style="display: block; margin-bottom: 15px; font-weight: 600; letter-spacing: 1px;">1. YOUR DIRECT CONTACT</span>
                         
@@ -55,7 +50,6 @@
                         </div>
                     </div>
 
-                    <!-- SECTION 2 -->
                     <div style="margin-bottom: 35px;">
                         <span class="subtitle" style="display: block; margin-bottom: 15px; font-weight: 600; letter-spacing: 1px;">2. FULFILLMENT & STUDIO DELIVERY</span>
                         <div>
@@ -64,7 +58,6 @@
                         </div>
                     </div>
 
-                    <!-- SECTION 3: SPECIFIC REQUIREMENTS -->
                     <div style="margin-bottom: 20px;">
                         <span class="subtitle" style="display: block; margin-bottom: 15px; font-weight: 600; letter-spacing: 1px;">3. BESPOKE MODIFICATIONS & SPECIFIC REQUIREMENTS</span>
                         <div>
@@ -76,11 +69,9 @@
                 </form>
             </div>
 
-            <!-- RIGHT COLUMN: THE BASKET SIDEBAR -->
             <div class="gallery-panel" style="background: #0a0a0a; border: 1px solid #1a1a1a; padding: 30px; display: flex; flex-direction: column; gap: 25px; height: fit-content;">
                 <span class="subtitle" style="font-weight: 600; letter-spacing: 1px;">YOUR BASKET</span>
                 
-                <!-- Item row -->
                 <div style="display: flex; gap: 15px; align-items: center; border-bottom: 1px solid #1a1a1a; padding-bottom: 20px;">
                     <img src="Oryx Cardholder Slim Tan 1.jpg" alt="Oryx Cardholder Slim Tan" style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #222;">
                     <div style="flex-grow: 1;">
@@ -90,7 +81,6 @@
                     <span style="font-size: 14px; font-weight: 500; color: #fff;">NT$ 990</span>
                 </div>
 
-                <!-- Price Breakdown -->
                 <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px; color: #aaa; border-bottom: 1px solid #1a1a1a; padding-bottom: 20px;">
                     <div style="display: flex; justify-content: space-between;">
                         <span>Artisanal Subtotal</span>
@@ -102,98 +92,20 @@
                     </div>
                 </div>
 
-                <!-- Total Row -->
                 <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 5px;">
                     <span style="font-size: 16px; font-weight: 600; letter-spacing: 0.5px;">Estimated Total</span>
                     <span style="font-size: 20px; font-weight: 600; color: #fff;">NT$ 990</span>
                 </div>
 
-                <!-- Connected Submit Button -->
-                <button type="submit" form="commissionForm" id="submitBtn" class="inquire-btn" style="width: 100%; margin-top: 10px;">SUBMIT BUILD RESERVATION</button>
+                <button type="submit" form="commissionForm" class="inquire-btn" style="width: 100%; margin-top: 10px;">SUBMIT BUILD RESERVATION</button>
             </div>
 
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer style="margin-top: 80px;">
         <p>&copy; 2026 ORYX LEATHER Studio. Built for the journey.</p>
     </footer>
 
-    <script>
-        document.getElementById('commissionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const originalBtnText = submitBtn.innerText;
-            submitBtn.innerText = "SENDING RESERVATION...";
-            submitBtn.disabled = true;
-
-            const formData = new FormData(this);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: json
-            })
-            .then(async (response) => {
-                let res = await response.json();
-                if (response.status == 200) {
-                    alert("Thank you! Your artisanal build slot request has been sent to the studio. We will verify your requirements and contact you shortly.");
-                    document.getElementById('commissionForm').reset();
-                } else {
-                    console.log(response);
-                    alert("Submission failed: " + res.message);
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                alert("Something went wrong. Please check your internet connection and try again.");
-            })
-            .then(() => {
-                submitBtn.innerText = originalBtnText;
-                submitBtn.disabled = false;
-            });
-        });
-    <script>
-        document.getElementById('commissionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const originalBtnText = submitBtn.innerText;
-            submitBtn.innerText = "SENDING RESERVATION...";
-            submitBtn.disabled = true;
-
-            // Create standard FormData that Web3Forms expects
-            const formData = new FormData(this);
-
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData // Sending as FormData instead of JSON string
-            })
-            .then(async (response) => {
-                let res = await response.json();
-                if (res.success) {
-                    alert("Thank you! Your artisanal build slot request has been sent to the studio. We will verify your requirements and contact you shortly.");
-                    document.getElementById('commissionForm').reset();
-                } else {
-                    alert("Submission failed: " + res.message);
-                }
-            })
-            .catch(error => {
-                console.error(error);
-                alert("Something went wrong. Please check your internet connection and try again.");
-            })
-            .then(() => {
-                submitBtn.innerText = originalBtnText;
-                submitBtn.disabled = false;
-            });
-        });
-    </script>
 </body>
 </html>
