@@ -5,10 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMenu = document.getElementById('navMenu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
 
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -40,66 +42,69 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- PREMIUM DYNAMIC INTERACTIVE GALLERY MODAL SYSTEM ---
+    // --- PRODUCT MODAL LIGHTBOX ENGINE ---
     const productModal = document.getElementById('productModal');
     const modalClose = document.querySelector('.modal-close');
-    const cardTrigger = document.querySelector('.product-card-trigger');
+    const clickableCard = document.querySelector('.product-card-clickable');
     
     const modalMainDisplay = document.getElementById('modalMainDisplay');
     const thumbnails = document.querySelectorAll('.thumb-item');
     const modalInquireBtn = document.getElementById('modalInquireBtn');
 
-    // Open Showcase Modal View
-    if (cardTrigger) {
-        cardTrigger.addEventListener('click', () => {
+    // Open Modal when clicking the product card listing
+    if (clickableCard && productModal) {
+        clickableCard.addEventListener('click', (e) => {
             productModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Stop viewport background scroll bleed
+            document.body.style.overflow = 'hidden'; // Lock main window scroll
         });
     }
 
-    // Close Modal View Actions
+    // Close Modal actions
     const closeShowcase = () => {
-        productModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        if (productModal) {
+            productModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Unlock main window scroll
+        }
     };
 
     if (modalClose) {
         modalClose.addEventListener('click', closeShowcase);
     }
 
-    productModal.addEventListener('click', (e) => {
-        if (e.target === productModal) {
-            closeShowcase();
-        }
-    });
+    if (productModal) {
+        productModal.addEventListener('click', (e) => {
+            if (e.target === productModal) {
+                closeShowcase();
+            }
+        });
+    }
 
-    // Close modal if user clicks the anchor inquiry button inside it
     if (modalInquireBtn) {
         modalInquireBtn.addEventListener('click', () => {
             closeShowcase();
         });
     }
 
-    // Interactive Thumbnail Selection Engine
+    // Dynamic Thumbnail Image Swapper Engine
     thumbnails.forEach(thumb => {
-        thumb.addEventListener('click', () => {
-            // Drop current active class layouts
-            thumbnails.forEach(t => t.classList.remove('active'));
+        thumb.addEventListener('click', (e) => {
+            e.stopPropagation(); // Avoid event collision with parent elements
             
-            // Highlight targeted asset card
+            thumbnails.forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
             
-            // Execute sleek image transition swap
-            modalMainDisplay.style.opacity = '0';
-            setTimeout(() => {
-                modalMainDisplay.src = thumb.src;
-                modalMainDisplay.style.opacity = '1';
-            }, 150);
+            if (modalMainDisplay) {
+                modalMainDisplay.style.opacity = '0';
+                setTimeout(() => {
+                    modalMainDisplay.src = thumb.src;
+                    modalMainDisplay.style.opacity = '1';
+                }, 120);
+            }
         });
     });
 
 
-    // --- ACTIVE NAVIGATION TRACKER ON SCROLL ---
+    // --- ACTIVE LINK ON SCROLL ---
     const sections = document.querySelectorAll('section');
     
     window.addEventListener('scroll', () => {
@@ -127,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            alert(`Thank you, ${name}! Your request has been simulated successfully. We will get back to you at ${email}.`);
+            alert(`Thank you, ${name}! Your custom inquiry has been recorded. We will contact you back at ${email}.`);
             contactForm.reset();
         });
     }
