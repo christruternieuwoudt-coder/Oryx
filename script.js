@@ -1,5 +1,114 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- BASKET STATE CONTROLLER ENGINE ---
+    let basket = JSON.parse(localStorage.getItem('oryx_basket')) || [];
+
+    const basketToggleBtn = document.getElementById('basketToggleBtn');
+    const basketDrawerClose = document.getElementById('basketDrawerClose');
+    const basketDrawerOverlay = document.getElementById('basketDrawerOverlay');
+    const basketDrawerSide = document.getElementById('basketDrawerSide');
+    
+    const basketCounterBadge = document.getElementById('basketCounterBadge');
+    const basketItemsContainer = document.getElementById('basketItemsContainer');
+    const basketComputedSubtotal = document.getElementById('basketComputedSubtotal');
+    const addToBasketBtn = document.getElementById('addToBasketBtn');
+
+    // UI Drawer Interactions
+    const openBasketDrawer = () => {
+        if(basketDrawerSide && basketDrawerOverlay) {
+            basketDrawerOverlay.style.display = 'block';
+            setTimeout(() => basketDrawerSide.classList.add('open'), 10);
+        }
+    };
+
+    const closeBasketDrawer = () => {
+        if(basketDrawerSide && basketDrawerOverlay) {
+            basketDrawerSide.classList.remove('open');
+            setTimeout(() => basketDrawerOverlay.style.display = 'none', 300);
+        }
+    };
+
+    if (basketToggleBtn) basketToggleBtn.addEventListener('click', openBasketDrawer);
+    if (basketDrawerClose) basketDrawerClose.addEventListener('click', closeBasketDrawer);
+    if (basketDrawerOverlay) basketDrawerOverlay.addEventListener('click', closeBasketDrawer);
+
+    // Refresh Basket Counter and Sidebar Content
+    const refreshBasketDOM = () => {
+        // Calculate dynamic total quantity count
+        const totalItemsCount = basket.reduce((sum, item) => sum + item.quantity, 0);
+        if (basketCounterBadge) basketCounterBadge.textContent = totalItemsCount;
+
+        if (!basketItemsContainer || !basketComputedSubtotal) return;
+
+        if (basket.length === 0) {
+            basketItemsContainer.innerHTML = `<p style="text-align:center; padding:3rem 0; color:var(--text-muted); font-size:0.95rem;">Your reservation basket is empty.</p>`;
+            basketComputedSubtotal.textContent = "NT$ 0";
+            return;
+        }
+
+        basketItemsContainer.innerHTML = "";
+        let runningTotalCost = 0;
+
+        basket.forEach((item, index) => {
+            runningTotalCost += (item.price * item.quantity);
+            
+            const cardRow = document.createElement('div');
+            cardRow.className = 'basket-item-card';
+            cardRow.innerHTML = `
+                <img src="${item.img}" alt="${item.name}" class="basket-item-thumb">
+                <div class="basket-item-details">
+                    <h4>${item.name}</h4>
+                    <p>NT$ ${item.price.toLocaleString()} x ${item.quantity}</p>
+                </div>
+                <button class="basket-item-remove-btn" data-index="${index}">&times; Remove</button>
+            `;
+            basketItemsContainer.appendChild(cardRow);
+        });
+
+        basketComputedSubtotal.textContent = `NT$ ${runningTotalCost.toLocaleString()}`;
+
+        // Bind contextual event handlers to individual tracking delete buttons
+        document.querySelectorAll('.basket-item-remove-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const targetIdx = parseInt(e.target.getAttribute('data-index'));
+                basket.splice(targetIdx, 1);
+                localStorage.setItem('oryx_basket', JSON.stringify(basket));
+                refreshBasketDOM();
+            });
+        });
+    };
+
+    // Add Item to Basket
+    if (addToBasketBtn) {
+        addToBasketBtn.addEventListener('click', () => {
+            const productPayload = {
+                name: "Oryx Cardholder Slim Tan",
+                price: 990,
+                img: "Oryx Cardholder Slim Tan 1.jpg",
+                quantity: 1
+            };
+
+            // Avoid double item stacking entries; increment counter tracking metric instead
+            const match = basket.find(item => item.name === productPayload.name);
+            if(match) {
+                match.quantity += 1;
+            } else {
+                basket.push(productPayload);
+            }
+
+            localStorage.setItem('oryx_basket', JSON.stringify(basket));
+            refreshBasketDOM();
+            
+            // Close details layout and instantly prompt basket tracking visualization drawer
+            closeShowcase();
+            openBasketDrawer();
+        });
+    }
+
+    // Initialize display on load
+    refreshBasketDOM();
+
+
     // --- MOBILE MENU FUNCTIONALITY ---
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
@@ -14,8 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
+            if(hamburger && navMenu) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
         });
     });
 
@@ -49,13 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const modalMainDisplay = document.getElementById('modalMainDisplay');
     const thumbnails = document.querySelectorAll('.thumb-item');
-    const modalInquireBtn = document.getElementById('modalInquireBtn');
 
     // Open Modal when clicking the product card listing
     if (clickableCard && productModal) {
         clickableCard.addEventListener('click', () => {
             productModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Lock background window scroll
+            document.body.style.overflow = 'hidden'; 
         });
     }
 
@@ -63,14 +173,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeShowcase = () => {
         if (productModal) {
             productModal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable background scrolling
+            document.body.style.overflow = 'auto'; 
         }
     };
 
-    if (modalClose) {
-        modalClose.addEventListener('click', closeShowcase);
-    }
-
+    if (modalClose) modalClose.addEventListener('click', closeShowcase);
+    
     if (productModal) {
         productModal.addEventListener('click', (e) => {
             if (e.target === productModal) {
@@ -79,16 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (modalInquireBtn) {
-        modalInquireBtn.addEventListener('click', () => {
-            closeShowcase();
-        });
-    }
-
     // Dynamic Thumbnail Image Swapper Engine
     thumbnails.forEach(thumb => {
         thumb.addEventListener('click', (e) => {
-            e.stopPropagation(); // Avoid execution bubbling conflicts
+            e.stopPropagation(); 
             
             thumbnails.forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
@@ -118,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
+            if (link.getAttribute('href') && link.getAttribute('href').includes(current)) {
                 link.classList.add('active');
             }
         });
