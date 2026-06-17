@@ -3,94 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORYX LEATHER — Handcrafted Studio</title>
+    <title>Oryx Slim Cardholder — Detail View</title>
     <style>
         :root {
             --bg-dark: #0a0908;
-            --card-bg: #11100e;
             --primary: #c5a880;
             --text-light: #e6e1da;
             --text-muted: #8e877e;
             --border: #1c1a17;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-light); }
+        body { background-color: var(--bg-dark); color: var(--text-light); padding: 2rem; }
         
-        /* Navbar Layout styling matching Oryx Luxury brand */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; border-bottom: 1px solid var(--border); }
-        .logo { font-family: serif; font-size: 1.3rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); text-decoration: none; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-
-        /* Product Gallery Layout Grid */
-        .gallery-container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
-        .filter-tabs { display: flex; gap: 1rem; margin-bottom: 2.5rem; justify-content: center; }
-        .tab { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.5rem 1.5rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; }
-        .tab.active { border-color: var(--primary); color: var(--primary); }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .product-card { background-color: var(--card-bg); border: 1px solid var(--border); overflow: hidden; text-decoration: none; color: inherit; display: block; transition: transform 0.2s ease; }
-        .product-card:hover { transform: translateY(-4px); }
-        .img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #161412; }
-        .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .container { max-width: 1100px; margin: 2rem auto; display: grid; grid-template-columns: 1fr; gap: 3rem; }
+        @media(min-width: 768px) { .container { grid-template-columns: 1fr 1fr; } }
         
-        .card-details { padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; }
-        .card-title { font-size: 0.95rem; font-weight: 500; color: var(--text-light); }
-        .card-price { color: var(--primary); font-weight: 600; font-size: 0.95rem; }
+        .gallery-panel { display: flex; flex-direction: column; gap: 1rem; }
+        .main-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border: 1px solid var(--border); }
+        .thumbnails { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+        .thumb { width: 100%; aspect-ratio: 1/1; object-fit: cover; border: 1px solid var(--border); cursor: pointer; opacity: 0.6; }
+        .thumb:hover, .thumb.active { opacity: 1; border-color: var(--primary); }
+
+        .details-panel { padding-top: 1rem; }
+        .subtitle { font-size: 0.75rem; text-transform: uppercase; color: var(--primary); letter-spacing: 0.15em; margin-bottom: 0.5rem; }
+        .product-title { font-family: serif; font-size: 2.2rem; font-weight: 400; margin-bottom: 1rem; text-transform: uppercase; }
+        .price { font-size: 1.4rem; color: var(--text-light); font-weight: 500; margin-bottom: 2rem; }
+        .description { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2.5rem; }
+        
+        .specs-list { margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.9rem; }
+        .spec-item { color: var(--text-muted); }
+        .spec-item strong { color: var(--primary); font-weight: 500; }
+
+        .inquire-btn { background-color: var(--primary); color: #1c140a; border: none; width: 100%; padding: 1.1rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; cursor: pointer; transition: opacity 0.2s; text-decoration: none; display: inline-block; text-align: center; }
+        .inquire-btn:hover { opacity: 0.9; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="logo">Oryx Leather</a>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <div style="color: var(--text-muted); cursor: pointer;">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-        </div>
-    </nav>
+    <a href="index.html" class="back-link">← Return to Studio Catalog</a>
 
-    <main class="gallery-container">
-        <div class="filter-tabs">
-            <button class="tab active">All Items</button>
-            <button class="tab">Wallets</button>
-            <button class="tab">Belts</button>
-            <button class="tab">Keychains</button>
-        </div>
-
-        <div class="grid">
-            <a href="product-detail.html" class="product-card">
-                <div class="img-wrap">
-                    <img src="Oryx Cardholder Slim Tan 1.jpg" alt="Oryx Slim Cardholder">
-                </div>
-                <div class="card-details">
-                    <span class="card-title">Oryx Slim Cardholder (Tan)</span>
-                    <span class="card-price">$65</span>
-                </div>
-            </a>
-
-            <div class="product-card" style="opacity: 0.5; cursor: not-allowed;">
-                <div class="img-wrap"><div style="padding: 40% 10%; color: var(--text-muted); text-align: center;">Savannah Classic Belt Image</div></div>
-                <div class="card-details">
-                    <span class="card-title">Savannah Classic Belt</span>
-                    <span class="card-price">$85</span>
-                </div>
-            </div>
-
-            <div class="product-card" style="opacity: 0.5; cursor: not-allowed;">
-                <div class="img-wrap"><div style="padding: 40% 10%; color: var(--text-muted); text-align: center;">Oryx Brass Key Fob Image</div></div>
-                <div class="card-details">
-                    <span class="card-title">Oryx Brass Key Fob</span>
-                    <span class="card-price">$25</span>
-                </div>
+    <div class="container">
+        <div class="gallery-panel">
+            <img id="viewfinder" src="Oryx Cardholder Slim Tan 1.jpg" class="main-img" alt="Oryx Slim Cardholder">
+            <div class="thumbnails">
+                <img src="Oryx Cardholder Slim Tan 1.jpg" class="thumb active" onclick="swapImage(this)">
+                <img src="Oryx Cardholder Slim Tan 2.jpg" class="thumb" onclick="swapImage(this)">
+                <img src="Oryx Cardholder Slim Tan 3.jpg" class="thumb" onclick="swapImage(this)">
+                <img src="Oryx Cardholder Slim Tan 4.jpg" class="thumb" onclick="swapImage(this)">
+                <img src="Oryx Cardholder Slim Tan 5.jpg" class="thumb" onclick="swapImage(this)">
             </div>
         </div>
-    </main>
 
+        <div class="details-panel">
+            <span class="subtitle">Signature Wallets</span>
+            <h1 class="product-title">Oryx Slim Cardholder</h1>
+            <div class="price">$65.00</div>
+            
+            <p class="description">Engineered with an ultra-slim profile for minimalist carry, this cardholder showcases a striking aesthetic symmetry with its signature curved exterior quick-access layout. Proudly bearing the debossed Oryx hallmark, the internal build hides deep branding pressed directly into the natural grain interior lining.</p>
+            
+            <div class="specs-list">
+                <div class="spec-item"><strong>Material:</strong> Full-grain veg-tanned hide</div>
+                <div class="spec-item"><strong>Stitching:</strong> Hand-waxed saddle stitch arrangement</div>
+                <div class="spec-item"><strong>Edges:</strong> Hand-beveled, burnished, and sealed</div>
+                <div class="spec-item"><strong>Capacity:</strong> Comfortably manages 4-6 cards plus flat currency</div>
+            </div>
+
+            <button id="inquireBtn" class="inquire-btn">Inquire for Custom Build</button>
+        </div>
+    </div>
+
+    <script>
+        // Inline layout view helper 
+        function swapImage(element) {
+            document.getElementById('viewfinder').src = element.src;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
