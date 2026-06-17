@@ -320,6 +320,8 @@ header {
 .item-img-container {
     height: 320px;
     overflow: hidden;
+    background-color: #1a1714;
+    position: relative;
 }
 
 .item-img-container img {
@@ -327,10 +329,11 @@ header {
     height: 100%;
     object-fit: cover;
     transition: var(--transition);
+    cursor: pointer;
 }
 
 .gallery-item:hover .item-img-container img {
-    transform: scale(1.05);
+    transform: scale(1.04);
 }
 
 .item-info {
@@ -341,13 +344,79 @@ header {
 }
 
 .item-info h3 {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .item-price {
     color: var(--primary);
     font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- LIGHTBOX MODAL --- */
+.lightbox-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    padding-top: 60px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(10, 8, 7, 0.95); 
+    backdrop-filter: blur(8px);
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: 85%;
+    max-width: 750px;
+    max-height: 80vh;
+    object-fit: contain;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    animation-name: zoomIn;
+    animation-duration: 0.3s;
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.95); opacity: 0;} 
+    to {transform: scale(1); opacity: 1;}
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: var(--text-muted);
+    font-size: 40px;
+    font-weight: bold;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+#lightboxCaption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: var(--text-main);
+    padding: 15px 0;
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
 }
 
 /* --- CONTACT SECTION --- */
@@ -470,6 +539,9 @@ footer {
     }
     .hero-content h1 {
         font-size: 2.8rem;
+    }
+    .lightbox-content {
+        width: 95%;
     }
 }
 
