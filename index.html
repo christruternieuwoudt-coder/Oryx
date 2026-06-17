@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oryx Leather | Premium Handmade Goods</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">ORYX<span>LEATHER</span></a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="https://instagram.com" target="_blank" class="instagram-icon-mobile"><i class="fab fa-instagram"></i></a>
+            </nav>
+            <div class="nav-actions">
+                <a href="https://instagram.com" target="_blank" class="instagram-icon-desktop" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-sub">Handcrafted Excellence</span>
+            <h1>Built For The Journey</h1>
+            <p>Premium, full-grain leather goods meticulously shaped by hand. Inspired by the rugged spirit of the safari, designed for modern life.</p>
+            <a href="#gallery" class="btn-primary">Explore Collection</a>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <span class="section-badge">Our Story</span>
+                    <h2>The Spirit of Oryx</h2>
+                    <p>Named after the resilient desert antelope, Oryx Leather was born from a passion for traditional craftsmanship and enduring design. Every piece we create tells a story of survival, elegance, and character.</p>
+                    <p>We source only the finest full-grain vegetable-tanned hides. No machines, no shortcuts—just masterfully hand-cut, hand-beveled, and saddle-stitched heirlooms that develop a rich, personal patina over a lifetime of use.</p>
+                    <div class="about-features">
+                        <div class="feature"><i class="fa-solid fa-shield-halved"></i> Lifetime Guarantee</div>
+                        <div class="feature"><i class="fa-solid fa-leaf"></i> Eco-Tanned Leather</div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800" alt="Leathercraft detailing">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">The Collection</span>
+                <h2>Handcrafted Goods</h2>
+                <p>Filter through our premium, field-tested essentials.</p>
+            </div>
+
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Items</button>
+                <button class="filter-btn" data-filter="wallets">Wallets</button>
+                <button class="filter-btn" data-filter="belts">Belts</button>
+                <button class="filter-btn" data-filter="keychains">Keychains</button>
+                <button class="filter-btn" data-filter="airtags">AirTag Holders</button>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="wallets">
+                    <div class="item-img-container">
+                        <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&q=80&w=600" alt="Handmade Leather Wallet">
+                    </div>
+                    <div class="item-info">
+                        <h3>The Nomad Minimalist Wallet</h3>
+                        <span class="item-price">$65</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="belts">
+                    <div class="item-img-container">
+                        <img src="https://images.unsplash.com/photo-1624222247344-550fb8ef897d?auto=format&fit=crop&q=80&w=600" alt="Handmade Leather Belt">
+                    </div>
+                    <div class="item-info">
+                        <h3>Savannah Classic Belt</h3>
+                        <span class="item-price">$85</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="keychains">
+                    <div class="item-img-container">
+                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=600" alt="Leather Keychain">
+                    </div>
+                    <div class="item-info">
+                        <h3>Oryx Brass Key Fob</h3>
+                        <span class="item-price">$25</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="airtags">
+                    <div class="item-img-container">
+                        <img src="https://images.unsplash.com/photo-1600857062241-98e5dba7f214?auto=format&fit=crop&q=80&w=600" alt="Leather AirTag Holder">
+                    </div>
+                    <div class="item-info">
+                        <h3>Saddle AirTag Case</h3>
+                        <span class="item-price">$30</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="section-badge">Get In Touch</span>
+                    <h2>Commission a Piece</h2>
+                    <p>Have questions about our goods or looking for a custom bespoke order? Drop us a line. We reply within 24 hours.</p>
+                    
+                    <div class="contact-details">
+                        <div class="detail-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>crafted@oryxleather.com</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <h4>Workshop</h4>
+                                <p>By Appointment Only — Nairobi / Cape Town</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" required placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" required placeholder="Tell us about what you are looking for..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary form-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Oryx Leather. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
