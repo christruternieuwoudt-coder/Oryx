@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="style.css?v=1.2">
+</head>
 <body>
 
     <header>
@@ -20,10 +20,12 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="#gallery" class="nav-link">Gallery</a>
                 <a href="#contact" class="nav-link">Contact</a>
-                <a href="https://instagram.com" target="_blank" class="instagram-icon-mobile"><i class="fab fa-instagram"></i></a>
             </nav>
             <div class="nav-actions">
-                <a href="https://instagram.com" target="_blank" class="instagram-icon-desktop" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <button id="basketToggleBtn" class="basket-action-trigger" aria-label="Open Studio Basket">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="basketCounterBadge" class="basket-counter-badge">0</span>
+                </button>
                 <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -32,6 +34,23 @@
             </div>
         </div>
     </header>
+
+    <div id="basketDrawerOverlay" class="basket-drawer-overlay"></div>
+    <div id="basketDrawerSide" class="basket-drawer-side">
+        <div class="basket-drawer-header">
+            <h3>Your Studio Basket</h3>
+            <button id="basketDrawerClose" class="basket-drawer-close">&times;</button>
+        </div>
+        <div id="basketItemsContainer" class="basket-items-container">
+            </div>
+        <div class="basket-drawer-footer">
+            <div class="basket-drawer-total">
+                <span>Reservation Subtotal:</span>
+                <span id="basketComputedSubtotal">NT$ 0</span>
+            </div>
+            <a href="checkout.html" class="btn-primary" style="display: block; text-align: center; margin-top: 1rem;">Proceed To Secure Reservation</a>
+        </div>
+    </div>
 
     <section id="home" class="hero-section">
         <div class="hero-overlay"></div>
@@ -179,9 +198,9 @@
                     
                     <p class="modal-closing-note">Built to age gracefully and accompany you for years to come.</p>
                     
-                    <a href="#contact" id="modalInquireBtn" class="btn-primary" style="text-align: center; display: block; margin-top: 2.5rem;">Inquire For Order</a>
+                    <button id="addToBasketBtn" class="btn-primary" style="width:100%; text-align: center; display: block; margin-top: 2.5rem;">Add to Reservation Basket</button>
                 </div>
-<script src="script.js?v=1.1"></script>
+
             </div>
         </div>
     </div>
@@ -236,12 +255,9 @@
     <footer>
         <div class="container footer-content">
             <p>&copy; 2026 Oryx Leather. All rights reserved.</p>
-            <div class="footer-socials">
-                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=1.2"></script>
 </body>
 </html>
