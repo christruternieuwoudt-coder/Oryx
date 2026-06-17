@@ -40,38 +40,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- PREMIUM LIGHTBOX MODAL ---
-    const lightboxModal = document.getElementById('lightboxModal');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-    const closeBtn = document.querySelector('.lightbox-close');
-    const triggers = document.querySelectorAll('.lightbox-trigger');
+    // --- PREMIUM DYNAMIC INTERACTIVE GALLERY MODAL SYSTEM ---
+    const productModal = document.getElementById('productModal');
+    const modalClose = document.querySelector('.modal-close');
+    const cardTrigger = document.querySelector('.product-card-trigger');
+    
+    const modalMainDisplay = document.getElementById('modalMainDisplay');
+    const thumbnails = document.querySelectorAll('.thumb-item');
+    const modalInquireBtn = document.getElementById('modalInquireBtn');
 
-    triggers.forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxModal.style.display = "block";
-            lightboxImg.src = img.src;
-            lightboxCaption.innerHTML = img.alt;
-            document.body.style.overflow = "hidden"; // Prevent page from scrolling behind lightbox
+    // Open Showcase Modal View
+    if (cardTrigger) {
+        cardTrigger.addEventListener('click', () => {
+            productModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Stop viewport background scroll bleed
         });
-    });
+    }
 
-    const closeLightbox = () => {
-        lightboxModal.style.display = "none";
-        document.body.style.overflow = "auto";
+    // Close Modal View Actions
+    const closeShowcase = () => {
+        productModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     };
 
-    closeBtn.addEventListener('click', closeLightbox);
-    
-    // Close modal when clicking anywhere outside the image canvas
-    lightboxModal.addEventListener('click', (e) => {
-        if (e.target === lightboxModal) {
-            closeLightbox();
+    if (modalClose) {
+        modalClose.addEventListener('click', closeShowcase);
+    }
+
+    productModal.addEventListener('click', (e) => {
+        if (e.target === productModal) {
+            closeShowcase();
         }
     });
 
+    // Close modal if user clicks the anchor inquiry button inside it
+    if (modalInquireBtn) {
+        modalInquireBtn.addEventListener('click', () => {
+            closeShowcase();
+        });
+    }
 
-    // --- ACTIVE LINK ON SCROLL ---
+    // Interactive Thumbnail Selection Engine
+    thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            // Drop current active class layouts
+            thumbnails.forEach(t => t.classList.remove('active'));
+            
+            // Highlight targeted asset card
+            thumb.classList.add('active');
+            
+            // Execute sleek image transition swap
+            modalMainDisplay.style.opacity = '0';
+            setTimeout(() => {
+                modalMainDisplay.src = thumb.src;
+                modalMainDisplay.style.opacity = '1';
+            }, 150);
+        });
+    });
+
+
+    // --- ACTIVE NAVIGATION TRACKER ON SCROLL ---
     const sections = document.querySelectorAll('section');
     
     window.addEventListener('scroll', () => {
@@ -94,11 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- BASIC CONTACT FORM SUBMISSION ---
     const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        alert(`Thank you, ${name}! Your request has been simulated successfully. We will get back to you at ${email}.`);
-        contactForm.reset();
-    });
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            alert(`Thank you, ${name}! Your request has been simulated successfully. We will get back to you at ${email}.`);
+            contactForm.reset();
+        });
+    }
 });
