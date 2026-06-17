@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oryx Leather | Premium Handmade Goods</title>
-    <!-- Google Fonts & FontAwesome for Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -13,7 +12,6 @@
 </head>
 <body>
 
-    <!-- Header & Navigation -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo">ORYX<span>LEATHER</span></a>
@@ -35,18 +33,16 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <span class="hero-sub">Handcrafted Excellence</span>
             <h1>Built For The Journey</h1>
-            <p>Premium, full-grain leather goods mended meticulously by hand. Inspired by the rugged spirit of the safari, designed for modern life.</p>
+            <p>Premium, full-grain leather goods meticulously shaped by hand. Inspired by the rugged spirit of the safari, designed for modern life.</p>
             <a href="#gallery" class="btn-primary">Explore Collection</a>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container">
             <div class="about-grid">
@@ -67,7 +63,6 @@
         </div>
     </section>
 
-    <!-- Product Gallery Section -->
     <section id="gallery" class="gallery-section">
         <div class="container">
             <div class="section-header">
@@ -76,7 +71,6 @@
                 <p>Filter through our premium, field-tested essentials.</p>
             </div>
 
-            <!-- Filter Buttons -->
             <div class="filter-container">
                 <button class="filter-btn active" data-filter="all">All Items</button>
                 <button class="filter-btn" data-filter="wallets">Wallets</button>
@@ -85,22 +79,19 @@
                 <button class="filter-btn" data-filter="airtags">AirTag Holders</button>
             </div>
 
-            <!-- Gallery Grid -->
             <div class="gallery-grid">
                 
-                <!-- WALLET PRODUCT CARD (TRIGGERS MODAL) -->
                 <div class="gallery-item product-card-clickable" data-category="wallets">
                     <div class="item-img-container">
                         <img src="Oryx Cardholder Slim Tan 1.jpg" alt="Oryx Cardholder Slim Tan">
                         <div class="card-overlay"><span class="view-text">View Details</span></div>
                     </div>
                     <div class="item-info">
-                        <h3>Oryx Slim Cardholder (Tan)</h3>
-                        <span class="item-price">NT$ 2,100</span>
+                        <h3>Oryx Cardholder Slim Tan</h3>
+                        <span class="item-price">NT$ 990</span>
                     </div>
                 </div>
 
-                <!-- Belts -->
                 <div class="gallery-item" data-category="belts">
                     <div class="item-img-container">
                         <img src="https://images.unsplash.com/photo-1624222247344-550fb8ef897d?auto=format&fit=crop&q=80&w=600" alt="Handmade Leather Belt">
@@ -111,7 +102,6 @@
                     </div>
                 </div>
 
-                <!-- Keychains -->
                 <div class="gallery-item" data-category="keychains">
                     <div class="item-img-container">
                         <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=600" alt="Leather Keychain">
@@ -122,7 +112,6 @@
                     </div>
                 </div>
 
-                <!-- AirTags -->
                 <div class="gallery-item" data-category="airtags">
                     <div class="item-img-container">
                         <img src="https://images.unsplash.com/photo-1600857062241-98e5dba7f214?auto=format&fit=crop&q=80&w=600" alt="Leather AirTag Holder">
@@ -137,13 +126,11 @@
         </div>
     </section>
 
-    <!-- Premium Luxury Product Detail Showcase Modal -->
     <div id="productModal" class="product-modal">
         <div class="modal-wrapper">
             <span class="modal-close">&times;</span>
             <div class="modal-grid">
                 
-                <!-- Left Column: Interactive Multi-angle Showcase -->
                 <div class="modal-media">
                     <div class="main-display-container">
                         <img id="modalMainDisplay" src="Oryx Cardholder Slim Tan 1.jpg" alt="Oryx Cardholder Showcase">
@@ -161,11 +148,10 @@
                     </div>
                 </div>
 
-                <!-- Right Column: Official Product Copy & Material Specifications -->
                 <div class="modal-details-side">
-                    <span class="detail-badge">Signature Wallets</span>
+                    <span class="detail-badge">Minimalist Carry</span>
                     <h2>Oryx Cardholder Slim Tan</h2>
-                    <div class="detail-price">NT$ 2,100</div>
+                    <div class="detail-price">NT$ 990</div>
                     
                     <div class="detail-desc">
                         <p>Crafted for those who appreciate simplicity, quality, and timeless design, the Oryx Cardholder Slim Tan is a minimalist everyday carry made entirely by hand from premium natural vegetable-tanned leather.</p>
@@ -183,21 +169,23 @@
                         <div class="spec-row">Develops a unique patina with age and use</div>
                         <div class="spec-row">Finished with the signature Oryx mark</div>
                         
-                        <h3 style="margin-top: 1.2rem;">Materials & Capacity</h3>
-                        <div class="spec-row"><strong>Materials:</strong> Natural vegetable-tanned leather</div>
-                        <div class="spec-row"><strong>Capacity:</strong> 4–5 cards & 2–3 folded bills</div>
+                        <h3 style="margin-top: 1.5rem;">Materials</h3>
+                        <div class="spec-row">Natural vegetable-tanned leather</div>
+
+                        <h3 style="margin-top: 1.5rem;">Capacity</h3>
+                        <div class="spec-row">4–5 cards</div>
+                        <div class="spec-row">2–3 folded bills</div>
                     </div>
                     
                     <p class="modal-closing-note">Built to age gracefully and accompany you for years to come.</p>
                     
-                    <a href="#contact" id="modalInquireBtn" class="btn-primary" style="text-align: center; display: block; margin-top: 2rem;">Inquire For Custom Order</a>
+                    <a href="#contact" id="modalInquireBtn" class="btn-primary" style="text-align: center; display: block; margin-top: 2.5rem;">Inquire For Order</a>
                 </div>
 
             </div>
         </div>
     </div>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="contact-grid">
@@ -245,7 +233,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container footer-content">
             <p>&copy; 2026 Oryx Leather. All rights reserved.</p>
