@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Open Modal when clicking the product card listing
     if (clickableCard && productModal) {
-        clickableCard.addEventListener('click', (e) => {
+        clickableCard.addEventListener('click', () => {
             productModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Lock main window scroll
+            document.body.style.overflow = 'hidden'; // Lock background window scroll
         });
     }
 
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeShowcase = () => {
         if (productModal) {
             productModal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Unlock main window scroll
+            document.body.style.overflow = 'auto'; // Re-enable background scrolling
         }
     };
 
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Dynamic Thumbnail Image Swapper Engine
     thumbnails.forEach(thumb => {
         thumb.addEventListener('click', (e) => {
-            e.stopPropagation(); // Avoid event collision with parent elements
+            e.stopPropagation(); // Avoid execution bubbling conflicts
             
             thumbnails.forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
