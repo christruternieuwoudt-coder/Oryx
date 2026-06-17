@@ -22,14 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 2. STORAGE DISPATCH FOR CHECKOUT ---
+    // --- 2. STORAGE BASKET INFRASTRUCTURE ---
     const inquireBtn = document.getElementById("inquireBtn");
     if (inquireBtn) {
         inquireBtn.addEventListener("click", () => {
             const productPayload = [
                 {
-                    name: "Oryx Slim Cardholder",
-                    price: 65.00,
+                    name: "Oryx Cardholder Slim Tan",
+                    price: 990,
                     img: "Oryx Cardholder Slim Tan 1.jpg",
                     quantity: 1
                 }
@@ -39,15 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 3. DYNAMIC CHECKOUT RENDERING ENGINE ---
+    // --- 3. CHECKOUT SUMMARY ENGINE ---
     const container = document.getElementById("dynamic-item-target");
     if (container) {
         let checkoutBasket = JSON.parse(localStorage.getItem("oryx_checkout_basket")) || [];
 
         if (checkoutBasket.length === 0) {
             checkoutBasket.push({
-                name: "Oryx Slim Cardholder",
-                price: 65.00,
+                name: "Oryx Cardholder Slim Tan",
+                price: 990,
                 img: "Oryx Cardholder Slim Tan 1.jpg",
                 quantity: 1
             });
@@ -76,15 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p style="color: #8e877e; font-size: 0.85rem;">Qty: ${item.quantity}</p>
                     </div>
                 </div>
-                <div style="font-weight: 600; color: #c5a880;">$ ${(item.price * item.quantity).toFixed(2)}</div>
+                <div style="font-weight: 600; color: #c5a880;">NT$ ${item.price * item.quantity}</div>
             `;
             container.appendChild(row);
         });
 
-        subtotalEl.textContent = `$ ${computedTotal.toFixed(2)}`;
-        totalEl.textContent = `$ ${computedTotal.toFixed(2)}`;
+        subtotalEl.textContent = `NT$ ${computedTotal}`;
+        totalEl.textContent = `NT$ ${computedTotal}`;
         
-        totalHiddenInput.value = `$ ${computedTotal.toFixed(2)}`;
+        totalHiddenInput.value = `NT$ ${computedTotal}`;
         itemHiddenInput.value = itemNamesSummary.join(", ");
     }
 });
