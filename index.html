@@ -8,6 +8,7 @@
 </head>
 <body>
 
+    <!-- NAVIGATION BAR -->
     <nav>
         <a href="index.html" class="logo">ORYX LEATHER</a>
         <ul class="nav-links">
@@ -21,8 +22,10 @@
         </div>
     </nav>
 
+    <!-- ================= MAIN STOREFRONT VIEWS ================= -->
     <div id="storefront-view">
         
+        <!-- HERO SECTION -->
         <section id="home" class="hero-section">
             <div class="hero-overlay"></div>
             <img src="Oryx Cardholder Slim Tan 1.jpg" alt="Oryx Leather Craft Banner" class="hero-banner-img">
@@ -33,6 +36,7 @@
             </div>
         </section>
 
+        <!-- PRODUCT GALLERY SECTION -->
         <section id="gallery" class="gallery-section">
             <h2 class="section-title">The Studio Catalog</h2>
             <p class="section-desc">Every individual item is precisely hand-shaped, grooved, and edge-burnished from full-grain vegetable-tanned hides.</p>
@@ -46,6 +50,7 @@
             </div>
 
             <div class="grid">
+                <!-- Clickable Main Item -->
                 <div class="product-card" data-category="wallets" id="oryx-cardholder-item">
                     <div class="img-wrap">
                         <img src="Oryx Cardholder Slim Tan 1.jpg" alt="Oryx Slim Cardholder">
@@ -56,6 +61,7 @@
                     </div>
                 </div>
 
+                <!-- Coming Soon Pieces -->
                 <div class="product-card upcoming" data-category="belts">
                     <div class="img-wrap"><div class="placeholder-text">Savannah Classic Belt<br><span class="soon-badge">Coming Soon</span></div></div>
                     <div class="card-details">
@@ -81,7 +87,33 @@
                 </div>
             </div>
         </section>
-<!-- ================= DYNAMIC PRODUCT DESCRIPTION VIEW ================= -->
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-content">
+                    <span class="subtitle">The Safari & Leather Aesthetic</span>
+                    <h2 class="about-title">Honoring Traditional Craft</h2>
+                    <p>Inspired by the raw, resilient spirit of the Oryx and the deep hues of natural landscapes, Oryx Leather was born from a desire to create minimalist, durable goods. We bypass mass machinery in favor of traditional hand-waxed saddle stitching, ensuring your premium gear only looks better with age and adventure.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT & SOCIALS SECTION -->
+        <section id="contact" class="contact-section">
+            <h2 class="section-title">Connect with the Studio</h2>
+            <p class="section-desc">For bespoke sizing modifications or custom requests, follow our process or reach out directly.</p>
+            
+            <div class="contact-links">
+                <a href="https://instagram.com" target="_blank" class="social-link">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    Follow on Instagram
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= DYNAMIC PRODUCT DESCRIPTION VIEW ================= -->
     <div id="detail-view" class="gallery-container" style="display: none;">
         <span class="back-link" id="backToCatalog">← Back to Studio Showcase</span>
         <div class="detail-container">
@@ -115,69 +147,13 @@
             </div>
         </div>
     </div>
-        <section id="about" class="about-section">
-            <div class="about-container">
-                <div class="about-content">
-                    <span class="subtitle">The Safari & Leather Aesthetic</span>
-                    <h2 class="about-title">Honoring Traditional Craft</h2>
-                    <p>Inspired by the raw, resilient spirit of the Oryx and the deep hues of natural landscapes, Oryx Leather was born from a desire to create minimalist, durable goods. We bypass mass machinery in favor of traditional hand-waxed saddle stitching, ensuring your premium gear only looks better with age and adventure.</p>
-                </div>
-            </div>
-        </section>
 
-        <section id="contact" class="contact-section">
-            <h2 class="section-title">Connect with the Studio</h2>
-            <p class="section-desc">For bespoke sizing modifications or custom requests, follow our process or reach out directly.</p>
-            
-            <div class="contact-links">
-                <a href="https://instagram.com" target="_blank" class="social-link">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                    Follow on Instagram
-                </a>
-            </div>
-        </section>
-    </div>
-
-    <div id="detail-view" class="gallery-container" style="display: none;">
-        <span class="back-link" id="backToCatalog">← Back to Studio Showcase</span>
-        <div class="detail-container">
-            
-            <div class="gallery-panel">
-                <img id="viewfinder" src="Oryx Cardholder Slim Tan 1.jpg" class="main-img" alt="Oryx Slim Cardholder">
-                <div class="thumbnails">
-                    <img src="Oryx Cardholder Slim Tan 1.jpg" class="thumb active" onclick="swapImage(this)">
-                    <img src="Oryx Cardholder Slim Tan 2.jpg" class="thumb" onclick="swapImage(this)">
-                    <img src="Oryx Cardholder Slim Tan 3.jpg" class="thumb" onclick="swapImage(this)">
-                    <img src="Oryx Cardholder Slim Tan 4.jpg" class="thumb" onclick="swapImage(this)">
-                    <img src="Oryx Cardholder Slim Tan 5.jpg" class="thumb" onclick="swapImage(this)">
-                </div>
-            </div>
-
-            <div class="details-panel">
-                <span class="subtitle">Signature Wallets</span>
-                <h1 class="product-title">Oryx Slim Cardholder</h1>
-                <div class="price">NT$ 990</div>
-                
-                <p class="description">Engineered with an ultra-slim profile for minimalist everyday carry, this signature cardholder showcases striking aesthetic symmetry with its curved exterior quick-access layouts. Proudly bearing the debossed Oryx hallmark, the internal architecture conceals deep branding pressed directly into the premium full-grain natural hide lining.</p>
-                
-                <div class="specs-list">
-                    <div class="spec-item"><strong>Material:</strong> Premium full-grain vegetable-tanned leather</div>
-                    <div class="spec-item"><strong>Stitching:</strong> Hand-waxed rot-resistant thread saddle stitch</div>
-                    <div class="spec-item"><strong>Edges:</strong> Beveled, hand-burnished with beeswax, and friction-sealed</div>
-                    <div class="spec-item"><strong>Capacity:</strong> Smoothly holds 4-6 cards plus flat folded currency</div>
-                </div>
-
-                <button id="inquireBtn" class="inquire-btn">Proceed to Commission Checkout</button>
-            </div>
-        </div>
-    </div>
-
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 ORYX LEATHER Studio. Built for the journey.</p>
     </footer>
 
     <script>
-        // Media Viewfinder image swapping function
         function swapImage(element) {
             document.getElementById('viewfinder').src = element.src;
             document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
