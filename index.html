@@ -3,261 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oryx Leather | Premium Handmade Goods</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=1.2">
+    <title>ORYX LEATHER — Handcrafted Studio</title>
+    <style>
+        :root {
+            --bg-dark: #0a0908;
+            --card-bg: #11100e;
+            --primary: #c5a880;
+            --text-light: #e6e1da;
+            --text-muted: #8e877e;
+            --border: #1c1a17;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-light); }
+        
+        /* Navbar Layout styling matching Oryx Luxury brand */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; border-bottom: 1px solid var(--border); }
+        .logo { font-family: serif; font-size: 1.3rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+        /* Product Gallery Layout Grid */
+        .gallery-container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
+        .filter-tabs { display: flex; gap: 1rem; margin-bottom: 2.5rem; justify-content: center; }
+        .tab { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.5rem 1.5rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; }
+        .tab.active { border-color: var(--primary); color: var(--primary); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .product-card { background-color: var(--card-bg); border: 1px solid var(--border); overflow: hidden; text-decoration: none; color: inherit; display: block; transition: transform 0.2s ease; }
+        .product-card:hover { transform: translateY(-4px); }
+        .img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #161412; }
+        .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .card-details { padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; }
+        .card-title { font-size: 0.95rem; font-weight: 500; color: var(--text-light); }
+        .card-price { color: var(--primary); font-weight: 600; font-size: 0.95rem; }
+    </style>
 </head>
 <body>
 
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">ORYX<span>LEATHER</span></a>
-            <nav class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#gallery" class="nav-link">Gallery</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-            <div class="nav-actions">
-                <button id="basketToggleBtn" class="basket-action-trigger" aria-label="Open Studio Basket">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span id="basketCounterBadge" class="basket-counter-badge">0</span>
-                </button>
-                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-            </div>
+    <nav>
+        <a href="index.html" class="logo">Oryx Leather</a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div style="color: var(--text-muted); cursor: pointer;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
         </div>
-    </header>
+    </nav>
 
-    <div id="basketDrawerOverlay" class="basket-drawer-overlay"></div>
-    <div id="basketDrawerSide" class="basket-drawer-side">
-        <div class="basket-drawer-header">
-            <h3>Your Studio Basket</h3>
-            <button id="basketDrawerClose" class="basket-drawer-close">&times;</button>
+    <main class="gallery-container">
+        <div class="filter-tabs">
+            <button class="tab active">All Items</button>
+            <button class="tab">Wallets</button>
+            <button class="tab">Belts</button>
+            <button class="tab">Keychains</button>
         </div>
-        <div id="basketItemsContainer" class="basket-items-container">
-            </div>
-        <div class="basket-drawer-footer">
-            <div class="basket-drawer-total">
-                <span>Reservation Subtotal:</span>
-                <span id="basketComputedSubtotal">NT$ 0</span>
-            </div>
-            <a href="checkout.html" class="btn-primary" style="display: block; text-align: center; margin-top: 1rem;">Proceed To Secure Reservation</a>
-        </div>
-    </div>
 
-    <section id="home" class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <span class="hero-sub">Handcrafted Excellence</span>
-            <h1>Built For The Journey</h1>
-            <p>Premium, full-grain leather goods meticulously shaped by hand. Inspired by the rugged spirit of the safari, designed for modern life.</p>
-            <a href="#gallery" class="btn-primary">Explore Collection</a>
-        </div>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text">
-                    <span class="section-badge">Our Story</span>
-                    <h2>The Spirit of Oryx</h2>
-                    <p>Named after the resilient desert antelope, Oryx Leather was born from a passion for traditional craftsmanship and enduring design. Every piece we create tells a story of survival, elegance, and character.</p>
-                    <p>We source only the finest full-grain vegetable-tanned hides. No machines, no shortcuts—just masterfully hand-cut, hand-beveled, and saddle-stitched heirlooms that develop a rich, personal patina over a lifetime of use.</p>
-                    <div class="about-features">
-                        <div class="feature"><i class="fa-solid fa-shield-halved"></i> Lifetime Guarantee</div>
-                        <div class="feature"><i class="fa-solid fa-leaf"></i> Eco-Tanned Leather</div>
-                    </div>
+        <div class="grid">
+            <a href="product-detail.html" class="product-card">
+                <div class="img-wrap">
+                    <img src="Oryx Cardholder Slim Tan 1.jpg" alt="Oryx Slim Cardholder">
                 </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800" alt="Leathercraft detailing">
+                <div class="card-details">
+                    <span class="card-title">Oryx Slim Cardholder (Tan)</span>
+                    <span class="card-price">$65</span>
+                </div>
+            </a>
+
+            <div class="product-card" style="opacity: 0.5; cursor: not-allowed;">
+                <div class="img-wrap"><div style="padding: 40% 10%; color: var(--text-muted); text-align: center;">Savannah Classic Belt Image</div></div>
+                <div class="card-details">
+                    <span class="card-title">Savannah Classic Belt</span>
+                    <span class="card-price">$85</span>
+                </div>
+            </div>
+
+            <div class="product-card" style="opacity: 0.5; cursor: not-allowed;">
+                <div class="img-wrap"><div style="padding: 40% 10%; color: var(--text-muted); text-align: center;">Oryx Brass Key Fob Image</div></div>
+                <div class="card-details">
+                    <span class="card-title">Oryx Brass Key Fob</span>
+                    <span class="card-price">$25</span>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <section id="gallery" class="gallery-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">The Collection</span>
-                <h2>Handcrafted Goods</h2>
-                <p>Filter through our premium, field-tested essentials.</p>
-            </div>
-
-            <div class="filter-container">
-                <button class="filter-btn active" data-filter="all">All Items</button>
-                <button class="filter-btn" data-filter="wallets">Wallets</button>
-                <button class="filter-btn" data-filter="belts">Belts</button>
-                <button class="filter-btn" data-filter="keychains">Keychains</button>
-                <button class="filter-btn" data-filter="airtags">AirTag Holders</button>
-            </div>
-
-            <div class="gallery-grid">
-                
-                <div class="gallery-item product-card-clickable" data-category="wallets">
-                    <div class="item-img-container">
-                        <img src="Oryx Cardholder Slim Tan 1.jpg" alt="Oryx Cardholder Slim Tan">
-                        <div class="card-overlay"><span class="view-text">View Details</span></div>
-                    </div>
-                    <div class="item-info">
-                        <h3>Oryx Cardholder Slim Tan</h3>
-                        <span class="item-price">NT$ 990</span>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="belts">
-                    <div class="item-img-container">
-                        <img src="https://images.unsplash.com/photo-1624222247344-550fb8ef897d?auto=format&fit=crop&q=80&w=600" alt="Handmade Leather Belt">
-                    </div>
-                    <div class="item-info">
-                        <h3>Savannah Classic Belt</h3>
-                        <span class="item-price">NT$ 2,750</span>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="keychains">
-                    <div class="item-img-container">
-                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=600" alt="Leather Keychain">
-                    </div>
-                    <div class="item-info">
-                        <h3>Oryx Brass Key Fob</h3>
-                        <span class="item-price">NT$ 800</span>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="airtags">
-                    <div class="item-img-container">
-                        <img src="https://images.unsplash.com/photo-1600857062241-98e5dba7f214?auto=format&fit=crop&q=80&w=600" alt="Leather AirTag Holder">
-                    </div>
-                    <div class="item-info">
-                        <h3>Saddle AirTag Case</h3>
-                        <span class="item-price">NT$ 950</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <div id="productModal" class="product-modal">
-        <div class="modal-wrapper">
-            <span class="modal-close">&times;</span>
-            <div class="modal-grid">
-                
-                <div class="modal-media">
-                    <div class="main-display-container">
-                        <img id="modalMainDisplay" src="Oryx Cardholder Slim Tan 1.jpg" alt="Oryx Cardholder Showcase">
-                    </div>
-                    <div class="thumbnail-strip">
-                        <img class="thumb-item active" src="Oryx Cardholder Slim Tan 1.jpg" alt="Angle 1">
-                        <img class="thumb-item" src="Oryx Cardholder Slim Tan 2.jpg" alt="Angle 2">
-                        <img class="thumb-item" src="Oryx Cardholder Slim Tan 3.jpg" alt="Angle 3">
-                        <img class="thumb-item" src="Oryx Cardholder Slim Tan 4.jpg" alt="Angle 4">
-                        <img class="thumb-item" src="Oryx Cardholder Slim Tan 5.jpg" alt="Angle 5">
-                        <img class="thumb-item" src="Oryx Cardholder Slim Tan 6.jpg" alt="Angle 6">
-                        <img class="thumb-item" src="Oryx Cardholder Slim Tan 7.jpg" alt="Angle 7">
-                        <img class="thumb-item" src="Oryx Cardholder Slim Tan 8.jpg" alt="Angle 8">
-                        <img class="thumb-item" src="Oryx Cardholder Slim Tan 9.jpg" alt="Angle 9">
-                    </div>
-                </div>
-
-                <div class="modal-details-side">
-                    <span class="detail-badge">Minimalist Carry</span>
-                    <h2>Oryx Cardholder Slim Tan</h2>
-                    <div class="detail-price">NT$ 990</div>
-                    
-                    <div class="detail-desc">
-                        <p>Crafted for those who appreciate simplicity, quality, and timeless design, the Oryx Cardholder Slim Tan is a minimalist everyday carry made entirely by hand from premium natural vegetable-tanned leather.</p>
-                        <p>Its slim profile slips comfortably into a front or back pocket while still providing space for your daily essentials. Designed to carry 4–5 cards and 2–3 folded bills, it offers the perfect balance between functionality and minimalism.</p>
-                        <p>Each cardholder is individually hand-cut, hand-stitched, and finished by hand, giving every piece its own unique character. The natural veg-tan leather will develop a rich patina over time, darkening and becoming even more beautiful with use, creating a wallet that is uniquely yours.</p>
-                    </div>
-
-                    <div class="spec-list">
-                        <h3>Features</h3>
-                        <div class="spec-row">Handmade from natural vegetable-tanned leather</div>
-                        <div class="spec-row">Slim and lightweight minimalist design</div>
-                        <div class="spec-row">Holds 4–5 cards comfortably</div>
-                        <div class="spec-row">Fits 2–3 folded bills</div>
-                        <div class="spec-row">Hand-stitched construction for durability</div>
-                        <div class="spec-row">Develops a unique patina with age and use</div>
-                        <div class="spec-row">Finished with the signature Oryx mark</div>
-                        
-                        <h3 style="margin-top: 1.5rem;">Materials</h3>
-                        <div class="spec-row">Natural vegetable-tanned leather</div>
-
-                        <h3 style="margin-top: 1.5rem;">Capacity</h3>
-                        <div class="spec-row">4–5 cards</div>
-                        <div class="spec-row">2–3 folded bills</div>
-                    </div>
-                    
-                    <p class="modal-closing-note">Built to age gracefully and accompany you for years to come.</p>
-                    
-                    <button id="addToBasketBtn" class="btn-primary" style="width:100%; text-align: center; display: block; margin-top: 2.5rem;">Add to Reservation Basket</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <span class="section-badge">Get In Touch</span>
-                    <h2>Commission a Piece</h2>
-                    <p>Have questions about our goods or looking for a custom bespoke order? Drop us a line. We reply within 24 hours.</p>
-                    
-                    <div class="contact-details">
-                        <div class="detail-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p>crafted@oryxleather.com</p>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <div>
-                                <h4>Workshop</h4>
-                                <p>By Appointment Only — Taipei</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form-container">
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" required placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" required placeholder="john@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" rows="5" required placeholder="Tell us about what you are looking for..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary form-submit">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 Oryx Leather. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="script.js?v=1.2"></script>
 </body>
 </html>
