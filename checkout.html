@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Commission Checkout | ORYX LEATHER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="checkout-body">
+
+    <div class="checkout-container">
+        <div>
+            <a href="index.html" class="header-logo">ORYX LEATHER</a>
+            <h1 class="section-title">Request Commission Build</h1>
+            <p class="section-subtitle">Please finalize your contact configuration and shipping destination below to secure your handmade build slot reservation.</p>
+
+            <form action="https://api.web3forms.com/submit" method="POST" id="checkoutFormMain">
+                <input type="hidden" name="access_key" value="3ea750e2-485e-4ed7-8b49-46d34f447644">
+                <input type="hidden" name="subject" value="New Oryx Leather Studio Commission Order">
+                <input type="hidden" name="from_name" value="Oryx Digital Studio Engine">
+                
+                <input type="hidden" name="ordered_item" id="hidden_ordered_item" value="">
+                <input type="hidden" name="order_total" id="hidden_order_total" value="">
+
+                <div class="form-group-title">1. Your Direct Contact</div>
+                <div class="form-row split">
+                    <div class="field-wrap">
+                        <label for="form-name">Full Name</label>
+                        <input type="text" id="form-name" name="customer_name" placeholder="John Doe" required>
+                    </div>
+                    <div class="field-wrap">
+                        <label for="form-email">Email Address</label>
+                        <input type="email" id="form-email" name="customer_email" placeholder="john@example.com" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="field-wrap">
+                        <label for="form-phone">Phone Number / Line ID</label>
+                        <input type="text" id="form-phone" name="customer_phone" placeholder="0912-345-678 / line_id" required>
+                    </div>
+                </div>
+
+                <div class="form-group-title" style="margin-top: 2.5rem;">2. Fulfillment & Studio Delivery</div>
+                <div class="form-row">
+                    <div class="field-wrap">
+                        <label for="form-address">Full Shipping Address</label>
+                        <textarea id="form-address" name="shipping_address" rows="3" placeholder="100, Taiwan, Taipei City, Zhongzheng District..." required></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="summary-panel">
+            <h2 class="summary-title">Your Basket</h2>
+            <div id="dynamic-item-target"></div>
+            
+            <div class="cost-breakdown">
+                <div class="cost-line">
+                    <span>Artisanal Subtotal</span>
+                    <span id="subtotal-display">NT$ 0</span>
+                </div>
+                <div class="cost-line">
+                    <span>Insured Studio Shipping</span>
+                    <span class="free-badge">Free</span>
+                </div>
+            </div>
+
+            <div class="total-line">
+                <span>Estimated Total</span>
+                <span id="total-display">NT$ 0</span>
+            </div>
+
+            <button type="submit" form="checkoutFormMain" class="submit-btn">Submit Build Reservation</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
