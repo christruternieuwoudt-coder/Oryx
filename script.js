@@ -1,12 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 1. PRODUCT DETAIL PAGE LOGIC ---
-    // Look for the checkout injection button on the item view screen
+    // --- 1. CORE SHOWROOM SWITCHBOARD CONTROLS ---
+    const oryxItemCard = document.getElementById("oryx-cardholder-item");
+    const storefrontView = document.getElementById("storefront-view");
+    const detailView = document.getElementById("detail-view");
+    const backToCatalog = document.getElementById("backToCatalog");
+
+    if (oryxItemCard && storefrontView && detailView) {
+        oryxItemCard.addEventListener("click", () => {
+            storefrontView.style.display = "none";
+            detailView.style.display = "block";
+            window.scrollTo(0, 0);
+        });
+    }
+
+    if (backToCatalog && storefrontView && detailView) {
+        backToCatalog.addEventListener("click", () => {
+            detailView.style.display = "none";
+            storefrontView.style.display = "block";
+            window.scrollTo(0, 0);
+        });
+    }
+
+    // --- 2. STORAGE DISPATCH FOR CHECKOUT ---
     const inquireBtn = document.getElementById("inquireBtn");
-    
     if (inquireBtn) {
         inquireBtn.addEventListener("click", () => {
-            // Package the Oryx Slim Cardholder design configuration payload
             const productPayload = [
                 {
                     name: "Oryx Slim Cardholder",
@@ -15,19 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     quantity: 1
                 }
             ];
-            // Save payload details to browser storage and route straight to checkout
             localStorage.setItem("oryx_checkout_basket", JSON.stringify(productPayload));
             window.location.href = "checkout.html";
         });
     }
 
-    // --- 2. CHECKOUT DASHBOARD RENDERING LOGIC ---
+    // --- 3. DYNAMIC CHECKOUT RENDERING ENGINE ---
     const container = document.getElementById("dynamic-item-target");
     if (container) {
-        // Retrieve selections out of browser storage memory
         let checkoutBasket = JSON.parse(localStorage.getItem("oryx_checkout_basket")) || [];
 
-        // Setup automated fallback entry if visitor bypassed direct basket routing path
         if (checkoutBasket.length === 0) {
             checkoutBasket.push({
                 name: "Oryx Slim Cardholder",
@@ -65,11 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
             container.appendChild(row);
         });
 
-        // Set the UI indicators with uniform premium currency tags
         subtotalEl.textContent = `$ ${computedTotal.toFixed(2)}`;
         totalEl.textContent = `$ ${computedTotal.toFixed(2)}`;
         
-        // Pass complete structural parameters down into Web3Forms hidden tags
         totalHiddenInput.value = `$ ${computedTotal.toFixed(2)}`;
         itemHiddenInput.value = itemNamesSummary.join(", ");
     }
