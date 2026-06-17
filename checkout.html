@@ -160,6 +160,40 @@
                 submitBtn.disabled = false;
             });
         });
+    <script>
+        document.getElementById('commissionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = "SENDING RESERVATION...";
+            submitBtn.disabled = true;
+
+            // Create standard FormData that Web3Forms expects
+            const formData = new FormData(this);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData // Sending as FormData instead of JSON string
+            })
+            .then(async (response) => {
+                let res = await response.json();
+                if (res.success) {
+                    alert("Thank you! Your artisanal build slot request has been sent to the studio. We will verify your requirements and contact you shortly.");
+                    document.getElementById('commissionForm').reset();
+                } else {
+                    alert("Submission failed: " + res.message);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Something went wrong. Please check your internet connection and try again.");
+            })
+            .then(() => {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
